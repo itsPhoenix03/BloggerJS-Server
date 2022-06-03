@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const cors = require("cors");
 
 //Routes
@@ -48,16 +49,34 @@ mongoose
 //Setting up CORS
 app.use(cors());
 
-//Uploading the images using multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "Images"),
-  filename: (req, file, cb) => cb(null, req.body.name),
-});
+//Creating the Images folder
+function ensureExists(path, cb) {
+  fs.mkdir(path, (err) => {
+    if (err) {
+      if (err.code == "EEXIST")
+        cb(null); // Ignore the error if the folder already exists
+      else cb(err); // Something else went wrong
+    } else cb(null); // Successfully created folder
+  });
+}
 
-const upload = multer({ storage });
-app.post("/api/upload", upload.single("file"), (req, res) =>
-  res.status(200).json("Image has been Uploaded!")
-);
+ensureExists(__dirname + "/upload", (err) => {
+  // Handle folder creation error
+  if (err) console.log(err);
+  // We're all good
+  else {
+    //Uploading the images using multer
+    const storage = multer.diskStorage({
+      destination: (req, file, cb) => cb(null, "Images"),
+      filename: (req, file, cb) => cb(null, req.body.name),
+    });
+
+    const upload = multer({ storage });
+    app.post("/api/upload", upload.single("file"), (req, res) =>
+      res.status(200).json("Image has been Uploaded!")
+    );
+  }
+});
 
 //Auth Route
 app.use("/api/auth", authRoute);
