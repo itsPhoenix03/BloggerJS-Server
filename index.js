@@ -60,7 +60,7 @@ function ensureExists(path, cb) {
   });
 }
 
-ensureExists(__dirname + "/upload", (err) => {
+ensureExists(__dirname + "/Images", (err) => {
   // Handle folder creation error
   if (err) console.log(err);
   // We're all good
