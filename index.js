@@ -48,7 +48,7 @@ mongoose
 
 //Setting up CORS
 app.use(
-  cors({ origin: [`https://bloggerjs.netlify.app`, `https://localhost:3000`] })
+  cors({ origin: [`https://bloggerjs.netlify.app`, `http://localhost:3000`] })
 );
 
 //Creating the Images folder
