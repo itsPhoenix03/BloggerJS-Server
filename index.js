@@ -47,7 +47,9 @@ mongoose
 // });
 
 //Setting up CORS
-app.use(cors({ origin: `https://bloggerjs.netlify.app` }));
+app.use(
+  cors({ origin: [`https://bloggerjs.netlify.app`, `https://localhost:3000`] })
+);
 
 //Creating the Images folder
 function ensureExists(path, cb) {
