@@ -79,4 +79,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//GET AUTHOR IMAGE
+router.get("/:username", async (res, req) => {
+  //Finding the author
+  try {
+    const user = await User.findOne(req.params.username);
+
+    //Fetching the profile picture of author
+    const { profilePicture, ...props } = user._doc;
+    //Sending back the response
+    res.status(500).json(authorProfilePicture);
+  } catch (error) {
+    //Error Handling
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
