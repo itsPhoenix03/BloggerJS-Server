@@ -80,7 +80,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //GET AUTHOR IMAGE
-router.get("/:username", async (res, req) => {
+router.get("/:username", async (req, res) => {
   //Finding the author
   try {
     console.log(req.params.username);
