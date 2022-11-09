@@ -88,7 +88,7 @@ router.get("/:username", async (res, req) => {
     //Fetching the profile picture of author
     const { profilePicture, ...props } = user._doc;
     //Sending back the response
-    res.status(500).json(authorProfilePicture);
+    res.status(500).json(profilePicture);
   } catch (error) {
     //Error Handling
     res.status(500).json(error);
