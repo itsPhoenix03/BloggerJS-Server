@@ -85,7 +85,7 @@ router.get("/:username", async (req, res) => {
   try {
     console.log(req.params.username);
     const user = await User.findOne({
-      username: req.params.username.replaceAll("%20", " "),
+      username: req.params.username,
     });
 
     //Fetching the profile picture of author
