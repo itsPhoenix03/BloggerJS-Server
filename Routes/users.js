@@ -83,7 +83,10 @@ router.get("/:id", async (req, res) => {
 router.get("/:username", async (res, req) => {
   //Finding the author
   try {
-    const user = await User.findOne({ username: req.params.username });
+    console.log(req.params.username);
+    const user = await User.findOne({
+      username: req.params.username.replaceAll("%20", " "),
+    });
 
     //Fetching the profile picture of author
     const { profilePicture, ...props } = user._doc;
