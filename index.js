@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
+const https = require("https");
 
 //Routes
 const authRoute = require("./Routes/auth");
@@ -50,6 +51,12 @@ app.use("/api/posts", postsRoute);
 
 //Categories Route
 app.use("/api/categories", categoryRoute);
+
+//Self Ping System
+setInterval(() => {
+  https.get("https://bloggerjsserver.onrender.com/api/");
+  console.log("pinged");
+}, 600000); // every 10 minutes (600000)
 
 //PORT
 const PORT = process.env.PORT || 5000;
