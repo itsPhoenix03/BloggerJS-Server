@@ -56,7 +56,7 @@ app.use("/api/categories", categoryRoute);
 setInterval(() => {
   https.get("https://bloggerjsserver.onrender.com/api/");
   console.log("pinged");
-}, 1500000); // every 25 minutes (1500000)
+}, 840000); // every 14 minutes (840000)
 
 //PORT
 const PORT = process.env.PORT || 5000;
