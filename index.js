@@ -53,10 +53,10 @@ app.use("/api/posts", postsRoute);
 app.use("/api/categories", categoryRoute);
 
 //Self Ping System
-setInterval(() => {
-  https.get("https://bloggerjsserver.onrender.com/api/");
-  console.log("pinged");
-}, 840000); // every 14 minutes (840000)
+// setInterval(() => {
+//   https.get("https://bloggerjsserver.onrender.com/api/");
+//   console.log("pinged");
+// }, 840000); // every 14 minutes (840000)
 
 //PORT
 const PORT = process.env.PORT || 5000;
